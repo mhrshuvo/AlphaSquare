@@ -26,7 +26,7 @@ public class login {
     }
 
     public void welcome(){
-        frame = new JFrame("IUBAT team AlphaSquare");
+        frame = new JFrame("AlphaSquare");
         frame.setBounds(100, 100, 470, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
@@ -38,12 +38,19 @@ public class login {
         frame.getContentPane().add(Welcome);
     }
     public void successful(){
-        ImageIcon i = new ImageIcon("download.png");
+        ImageIcon i = new ImageIcon("IUBAT.png");
         JOptionPane.showMessageDialog(frame,"Welcome to IUBAT Library Management System","login Successfull",JOptionPane.PLAIN_MESSAGE,i);
     }
     public void error(){
-        ImageIcon i = new ImageIcon("download.png");
+        ImageIcon i = new ImageIcon("IUBAT.png");
         JOptionPane.showMessageDialog(frame,"Invalid Username or Password","Error!",JOptionPane.ERROR_MESSAGE,i);
+    }
+    public void Label( String l){
+        JLabel label = new JLabel(String.format("%s", l));
+        label.setFont(new Font("", Font.BOLD, 18));
+        label.setBounds(153, 65, 200, 29);
+        label.setForeground(Color.blue);
+        frame.getContentPane().add(label);
     }
 
     public void loginGUI() {
