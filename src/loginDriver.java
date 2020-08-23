@@ -30,23 +30,22 @@ public  class  loginDriver extends login  {
     public void DriveMain(String sa){
         switch (sa){
             case "Librarian Login":{
-                //LibrarianPage.main(null);
-                System.out.println("Librarian Page");
+              //  librarian.main(null);
+                System.out.println("Librarian Login");
                 break;
             }
             case "Vendor Login":{
-                //VendorPage.main(null);
-                System.out.println("vendor Page");
+             //   vendor.main(null);
+                System.out.println("Vendor Login");
                 break;
             }
             case "User Login":{
-                //UserPage.main(null);
-                System.out.println("User Page");
+              //  user.main(null);
                 break;
             }
             case "Admin Login":{
-                //AdminPage.main(null);
-                System.out.println("Admin Page");
+                //admin.main(null);
+                System.out.println("admin Login");
                 break;
             }
         }
@@ -116,7 +115,7 @@ public  class  loginDriver extends login  {
             lblRegister.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-               //     Register.main(new String[]{});
+                //    Register.main(new String[]{});
                     frame.dispose();
                 }
             });
@@ -175,7 +174,7 @@ public  class  loginDriver extends login  {
         });
         frame.getContentPane().add(passwordField);
 
-        System.out.println(Driver+".txt1");
+        System.out.println(Driver+".txt");
 
         //********** stopping here 16-aug-2020 ********************
 
@@ -212,4 +211,3 @@ public  class  loginDriver extends login  {
     }
 
 }
-
