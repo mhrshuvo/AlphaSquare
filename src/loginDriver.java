@@ -4,19 +4,17 @@ import java.awt.event.*;
 import java.io.*;
 
 
+
 public  class  loginDriver extends login  {
 
     // main class
     public static void main(String x ) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-                try {
-                    loginDriver window = new loginDriver(x);
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                loginDriver window = new loginDriver(x);
+                window.frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     } //end main class
@@ -28,22 +26,22 @@ public  class  loginDriver extends login  {
 
 
     public void DriveMain(String sa){
-        switch (sa){
-            case "Librarian Login":{
-              //  librarian.main(null);
+        switch (sa) {
+            case "Librarian Login": {
+                librarian.main(null);
                 System.out.println("Librarian Login");
                 break;
             }
-            case "Vendor Login":{
-             //   vendor.main(null);
+            case "Vendor Login" : {
+                //   vendor.main(null);
                 System.out.println("Vendor Login");
                 break;
             }
             case "User Login":{
-              //  user.main(null);
+                user.main("pass");
                 break;
             }
-            case "Admin Login":{
+            case "Admin Login" : {
                 //admin.main(null);
                 System.out.println("admin Login");
                 break;
@@ -54,9 +52,8 @@ public  class  loginDriver extends login  {
 
     void CheckDatabase(String fN , String l ){
         JButton btnLogin = new JButton("Login");
-        btnLogin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0 ) {
-                try {
+        btnLogin.addActionListener(e->{
+            try {
                     @SuppressWarnings("resource")
                     BufferedReader Reader = new BufferedReader(new FileReader(fN));
                     String username = txtUserName.getText().trim();
@@ -76,11 +73,11 @@ public  class  loginDriver extends login  {
 
                     }
                     error();
-                } catch (IOException t) {
+                }catch (IOException t) {
                     t.printStackTrace();
                 }
             }
-        });
+        );
         btnLogin.setFont(new Font("", Font.BOLD, 15));
         btnLogin.setBounds(119, 194, 102, 23);
         frame.getContentPane().add(btnLogin);
@@ -88,12 +85,11 @@ public  class  loginDriver extends login  {
         Label(l);
 
         JButton btnBack = new JButton("Back\r\n");
-        btnBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
+        btnBack.addActionListener(e -> {
                 login.main(new String[]{});
                 frame.dispose();
             }
-        });
+        );
         btnBack.setFont(new Font("", Font.BOLD, 15));
         btnBack.setBounds(231, 194, 102, 23);
         frame.getContentPane().add(btnBack);
@@ -174,7 +170,7 @@ public  class  loginDriver extends login  {
         });
         frame.getContentPane().add(passwordField);
 
-        System.out.println(Driver+".txt");
+
 
         //********** stopping here 16-aug-2020 ********************
 
@@ -199,12 +195,12 @@ public  class  loginDriver extends login  {
                 String fileN = "UserDatabase.txt";
                 CheckDatabase(fileN,"User Login");
                 break;
-            }//user vendor end
+            }//case user end
             case "Admin" :{
                 String fileN = "AdminDatabase.txt";
                 CheckDatabase(fileN,"Admin Login");
                 break;
-            }//admin vendor end
+            }//case admin end
 
         }
 

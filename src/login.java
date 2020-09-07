@@ -68,12 +68,11 @@ public class login {
 
         //user button
         JButton User = new JButton("User");
-        User.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        User.addActionListener( e -> {
                 System.out.println(" librarian button pressed");
                 loginDriver.main("User");
                 frame.dispose();
-            }
+
         });
 
         User.setBounds(120, 105, 200, 30);
@@ -81,38 +80,35 @@ public class login {
 
         //librarian button
         JButton Librarian = new JButton("Librarian");
-        Librarian.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        Librarian.addActionListener( e -> {
                 System.out.println(" librarian button pressed");
                 loginDriver.main("Librarian");
                 frame.dispose();
             }
-        });
+        );
         Librarian.setBounds(120, 185, 198, 29);
         frame.getContentPane().add(Librarian);
 
         //Vendor button
         JButton Vendor = new JButton("Vendor");
-        Vendor.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        Vendor.addActionListener(e -> {
                 System.out.println("vendor button pressed");
                 loginDriver.main("Vendor");
                 frame.dispose();
             }
-        });
+        );
         Vendor.setBounds(120, 145, 198, 29);
         frame.getContentPane().add(Vendor);
 
 
         //admin
         JButton Admin = new JButton("Admin");
-        Admin.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        Admin.addActionListener(e -> {
                 System.out.println(" Admin button pressed");
                 loginDriver.main("Admin");
                 frame.dispose();
             }
-        });
+        );
         Admin.setBounds(120, 225, 198, 29);
         frame.getContentPane().add(Admin);
 
