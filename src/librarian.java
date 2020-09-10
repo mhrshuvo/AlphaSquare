@@ -4,17 +4,20 @@ import java.awt.event.*;
 
 class librarian extends login {
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    librarian window = new librarian();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public static void main(String p) {
+        if(p=="pass"){
+            EventQueue.invokeLater(() ->{
+                        try {
+                            librarian window = new librarian();
+                            window.frame.setVisible(true);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+            );
+        }else{
+            login.main(null);
+        }
     }
 
     public librarian() {

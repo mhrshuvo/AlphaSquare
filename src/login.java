@@ -30,7 +30,7 @@ public class login {
         frame.setBounds(100, 100, 470, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
-        frame.getContentPane().setBackground( Color.gray );
+//        frame.getContentPane().setBackground( Color.gray );
 
         ImageIcon i = new ImageIcon("IUBAT.png");
         JLabel Welcome = new JLabel("Welcome To IUBAT Library Management System",i,SwingConstants.HORIZONTAL);

@@ -2,8 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
-
-
+import java.sql.*;
 
 public  class  loginDriver extends login  {
 
@@ -24,11 +23,10 @@ public  class  loginDriver extends login  {
     }
 
 
-
     public void DriveMain(String sa){
         switch (sa) {
             case "Librarian Login": {
-                librarian.main(null);
+                librarian.main("pass");
                 System.out.println("Librarian Login");
                 break;
             }
@@ -47,33 +45,65 @@ public  class  loginDriver extends login  {
                 break;
             }
         }
-
     }
 
     void CheckDatabase(String fN , String l ){
         JButton btnLogin = new JButton("Login");
         btnLogin.addActionListener(e->{
             try {
-                    @SuppressWarnings("resource")
-                    BufferedReader Reader = new BufferedReader(new FileReader(fN));
-                    String username = txtUserName.getText().trim();
-                    String password = new String(passwordField.getPassword());
+                System.out.println("fn " + fN + " l " + l);
+//                    @SuppressWarnings("resource")
+//                    BufferedReader Reader = new BufferedReader(new FileReader(fN+".txt"));
+//                    String username = txtUserName.getText().trim();
+//                    String password = new String(passwordField.getPassword());
+//
+//                    String line;
+//
+//                    while((line = Reader.readLine())!= null){
+//                        String[] array = line.split(",");
+//
+//                        if(array[0].equals(username) && array[1].equals(password)){
+//                            successful();
+//                            DriveMain(l);
+//                            frame.dispose();
+//                            return;
+//                        }
+//
+//                    }
+//                    error();
 
-                    String line;
+            /*    ----mhrshuvo----
+                ###### SQL DATABASE
+                ----mhrshuvo----
+            */
+                String driverName = "com.mysql.jdbc.Driver";
+                Class.forName(driverName);
+                String serverName = "localhost:3306";
+                String mydatabase = "lbms_alpha";
+                String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+                String DBusername = "root";
+                String DBpassword = "";
+                Connection connection = DriverManager.getConnection(url, DBusername, DBpassword);
+                System.out.println("Connected");
 
-                    while((line = Reader.readLine())!= null){
-                        String[] array = line.split(",");
+                String username=txtUserName.getText();
+                String password= new String(passwordField.getPassword());
+                String query="select * from admin where NAME=? and PASSWORD=?";
+                java.sql.PreparedStatement statement=connection.prepareStatement(query);
+                statement.setString(1,username);
+                statement.setString(2,password);
+                ResultSet set=statement.executeQuery();
+                if (set.next()){
+                    successful();
+                    DriveMain(l);
+                    frame.dispose();
+                    return;
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Invalid Username or password");
+                }
 
-                        if(array[0].equals(username) && array[1].equals(password)){
-                            successful();
-                            DriveMain(l);
-                            frame.dispose();
-                            return;
-                        }
-
-                    }
-                    error();
-                }catch (IOException t) {
+                }catch (Exception t) {
                     t.printStackTrace();
                 }
             }
@@ -178,26 +208,25 @@ public  class  loginDriver extends login  {
             //password and user name check
 
             case "Librarian" : {
-                String fileN = "LibrarianDatabase.txt";
+                String fileN = "LibrarianDatabase";
                 CheckDatabase(fileN,"Librarian Login");
-
                 break;
             } // case Librarian end
 
             case "Vendor" : {
-                String fileN = "VendorDatabase.txt";
+                String fileN = "VendorDatabase";
                 CheckDatabase(fileN,"Vendor Login");
 
                 break;
             } //Case vendor end
 
             case "User" :{
-                String fileN = "UserDatabase.txt";
+                String fileN = "UserDatabase";
                 CheckDatabase(fileN,"User Login");
                 break;
             }//case user end
             case "Admin" :{
-                String fileN = "AdminDatabase.txt";
+                String fileN = "AdminDatabase";
                 CheckDatabase(fileN,"Admin Login");
                 break;
             }//case admin end
