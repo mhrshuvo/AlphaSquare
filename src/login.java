@@ -41,7 +41,8 @@ public class login {
     public void Label( String l){
         JLabel label = new JLabel(String.format("%s", l));
         label.setFont(new Font("", Font.BOLD, 18));
-        label.setBounds(153, 65, 200, 29);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setBounds(100, 65, 200, 29);
         label.setForeground(Color.blue);
         frame.getContentPane().add(label);
     }

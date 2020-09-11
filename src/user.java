@@ -44,8 +44,8 @@ public class user extends login{
         RequestBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 frame.dispose();
-                //	RequestBook.main(null);
-                System.out.println("req bk");
+              ReqBook.main("pass");
+
             }
         });
         RequestBook.setBounds(108, 142, 207, 23);
@@ -55,7 +55,7 @@ public class user extends login{
         btnComplaints.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 frame.dispose();
-                //Feedback.main(null);
+                Feedback.main("pass");
             }
         });
         btnComplaints.setBounds(108, 175, 207, 23);
