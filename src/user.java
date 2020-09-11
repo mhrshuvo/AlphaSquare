@@ -34,7 +34,7 @@ public class user extends login{
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 frame.dispose();
-                //SearchBook.main(null);
+                SearchBook.main("pass");
             }
         });
         button.setBounds(108, 108, 207, 23);

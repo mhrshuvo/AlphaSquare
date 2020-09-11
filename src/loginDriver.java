@@ -31,7 +31,7 @@ public  class  loginDriver extends login  {
                 break;
             }
             case "Vendor Login" : {
-                //   vendor.main(null);
+                vendor.main("pass");
                 System.out.println("Vendor Login");
                 break;
             }
@@ -52,30 +52,36 @@ public  class  loginDriver extends login  {
         btnLogin.addActionListener(e->{
             try {
                 System.out.println("fn " + fN + " l " + l);
-//                    @SuppressWarnings("resource")
-//                    BufferedReader Reader = new BufferedReader(new FileReader(fN+".txt"));
-//                    String username = txtUserName.getText().trim();
-//                    String password = new String(passwordField.getPassword());
-//
-//                    String line;
-//
-//                    while((line = Reader.readLine())!= null){
-//                        String[] array = line.split(",");
-//
-//                        if(array[0].equals(username) && array[1].equals(password)){
-//                            successful();
-//                            DriveMain(l);
-//                            frame.dispose();
-//                            return;
-//                        }
-//
-//                    }
-//                    error();
 
-            /*    ----mhrshuvo----
-                ###### SQL DATABASE
-                ----mhrshuvo----
-            */
+                /*       ----mhrshuvo----
+                ###### Text file DATABASE ######
+                     ----mhrshuvo----       */
+/*
+                    BufferedReader Reader = new BufferedReader(new FileReader(fN+".txt"));
+                    String username = txtUserName.getText().trim();
+                    String password = new String(passwordField.getPassword());
+
+                    String line;
+
+                    while((line = Reader.readLine())!= null){
+                        String[] array = line.split(",");
+
+                        if(array[0].equals(username) && array[1].equals(password)){
+                            successful();
+                            DriveMain(l);
+                            frame.dispose();
+                            return;
+                        }
+
+                    }
+                    error();
+*/
+
+
+            /*       ----mhrshuvo----
+                ###### SQL DATABASE ######
+                     ----mhrshuvo----       */
+
                 String driverName = "com.mysql.jdbc.Driver";
                 Class.forName(driverName);
                 String serverName = "localhost:3306";
@@ -88,7 +94,7 @@ public  class  loginDriver extends login  {
 
                 String username=txtUserName.getText();
                 String password= new String(passwordField.getPassword());
-                String query="select * from admin where NAME=? and PASSWORD=?";
+                String query="select * from "+ fN +" where NAME=? and PASSWORD=?";
                 java.sql.PreparedStatement statement=connection.prepareStatement(query);
                 statement.setString(1,username);
                 statement.setString(2,password);
@@ -100,8 +106,10 @@ public  class  loginDriver extends login  {
                     return;
                 }
                 else {
-                    JOptionPane.showMessageDialog(null,"Invalid Username or password");
+                   error();
                 }
+
+
 
                 }catch (Exception t) {
                     t.printStackTrace();
@@ -141,7 +149,7 @@ public  class  loginDriver extends login  {
             lblRegister.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                //    Register.main(new String[]{});
+                    Register.main(new String[]{});
                     frame.dispose();
                 }
             });
@@ -201,32 +209,29 @@ public  class  loginDriver extends login  {
         frame.getContentPane().add(passwordField);
 
 
-
-        //********** stopping here 16-aug-2020 ********************
-
         switch (Driver){
             //password and user name check
 
             case "Librarian" : {
-                String fileN = "LibrarianDatabase";
+                String fileN = "LibrarianDb";
                 CheckDatabase(fileN,"Librarian Login");
                 break;
             } // case Librarian end
 
             case "Vendor" : {
-                String fileN = "VendorDatabase";
+                String fileN = "VendorDb";
                 CheckDatabase(fileN,"Vendor Login");
 
                 break;
             } //Case vendor end
 
             case "User" :{
-                String fileN = "UserDatabase";
+                String fileN = "UserDb";
                 CheckDatabase(fileN,"User Login");
                 break;
             }//case user end
             case "Admin" :{
-                String fileN = "AdminDatabase";
+                String fileN = "AdminDb";
                 CheckDatabase(fileN,"Admin Login");
                 break;
             }//case admin end

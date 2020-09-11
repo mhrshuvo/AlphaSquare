@@ -113,6 +113,5 @@ public class login {
         frame.getContentPane().add(Admin);
 
     }
-
 }
 
