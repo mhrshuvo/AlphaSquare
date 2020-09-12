@@ -2,6 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class Register extends login{
 
@@ -9,8 +12,7 @@ public class Register extends login{
     private JButton btnBack;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        EventQueue.invokeLater(() -> {
                 try {
                     Register window = new Register();
                     window.frame.setVisible(true);
@@ -18,8 +20,7 @@ public class Register extends login{
                     e.printStackTrace();
                 }
             }
-        });
-
+        );
     }
 
     public Register() {
@@ -49,7 +50,7 @@ public class Register extends login{
         lblRegister.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                loginDriver.main("Registered User");
+                login.main(null);
                 frame.dispose();
             }
         });
@@ -145,16 +146,18 @@ public class Register extends login{
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                File log = new File("UserDatabase.txt");
-
                 String username = txtUserName.getText().trim();
                 String password = new String(passwordField.getPassword());
                 String name = txtName.getText().trim();
                 String email = txtEmail.getText().trim();
-                String line;
+              //  File log = new File("UserDatabase.txt");
+              //  String line;
 
                 try {
-                    @SuppressWarnings("resource")
+                    /*       ----mhrshuvo----
+                ###### Text file DATABASE ######
+                     ----mhrshuvo----       */
+                    /*
                     BufferedReader Reader = new BufferedReader(new FileReader("UserDatabase.txt"));
 
                     while((line = Reader.readLine())!= null){
@@ -180,6 +183,28 @@ public class Register extends login{
                     bufferedWriter.newLine();
                     bufferedWriter.close();
                     JOptionPane.showMessageDialog(frame,"Registration is successful!");
+
+                     */
+
+             /*       ----mhrshuvo----
+                ###### SQL DATABASE ######
+                     ----mhrshuvo----       */
+
+                    String driverName = "com.mysql.jdbc.Driver";
+                    Class.forName(driverName);
+                    String serverName = "localhost:3306";
+                    String mydatabase = "lbms_alpha";
+                    String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
+                    String DBusername = "root";
+                    String DBpassword = "";
+                    Connection con = DriverManager.getConnection(url, DBusername, DBpassword);
+                    System.out.println("Connected");
+                    Statement stm = con.createStatement();
+                    String user = "INSERT INTO `UserDb` VALUES ( null,'"+username+"', '"+password+"', '"+email+"')";
+                    System.out.println(user);
+                    stm.executeUpdate(user);
+                    System.out.println("insert done");
+                    loginDriver.main("User");
 
                 } catch(Exception n) {
                 }

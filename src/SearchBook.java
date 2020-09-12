@@ -35,8 +35,7 @@ public class SearchBook extends login{
         welcome();
         JButton button = new JButton("Search");
 
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
+        button.addActionListener(e ->  {
                 try {
                     BufferedReader Reader = new BufferedReader(new FileReader("BookDatabase.txt"));
                     String BookID = textField.getText().trim();
@@ -69,17 +68,16 @@ public class SearchBook extends login{
                     t.printStackTrace();
                 }
             }
-        });
+        );
         button.setBounds(20, 258, 80, 23);
         frame.getContentPane().add(button);
 
         JButton button_1 = new JButton("Back");
-        button_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
+        button_1.addActionListener( e ->  {
                 frame.dispose();
                 user.main("pass");
             }
-        });
+        );
         button_1.setBounds(322, 258, 87, 23);
         frame.getContentPane().add(button_1);
 
@@ -136,20 +134,18 @@ public class SearchBook extends login{
         frame.getContentPane().add(lblAuthor);
 
         JButton btnClear = new JButton("Clear");
-        btnClear.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
+        btnClear.addActionListener(arg0 -> {
                 textField.setText(null);
                 textArea.setText(null);
                 textArea_1.setText(null);
                 textArea_2.setText(null);
             }
-        });
+        );
         btnClear.setBounds(236, 258, 76, 23);
         frame.getContentPane().add(btnClear);
 
-        JButton btnDisplayAll = new JButton("Display All");
-        btnDisplayAll.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
+        JButton btnDisplayAll = new JButton("All book");
+        btnDisplayAll.addActionListener(e ->  {
                 try {
 
                     BufferedReader Reader = new BufferedReader(new FileReader("BookDatabase.txt"));
@@ -171,7 +167,7 @@ public class SearchBook extends login{
                     t.printStackTrace();
                 }
             }
-        });
+        );
 
         btnDisplayAll.setBounds(107, 258, 119, 23);
         frame.getContentPane().add(btnDisplayAll);
