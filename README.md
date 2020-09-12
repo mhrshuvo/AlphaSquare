@@ -1,11 +1,11 @@
-#Library management system with Java Swing and SQL Database.
+# Library management system with Java Swing and SQL Database.
 
-##In this system some txt file is also used for storing some data.
+## In this system some txt file is also used for storing some data.
 
-###Developed By Team AlphaSquare
+### Developed By Team AlphaSquare
 
 <ul>
-<li>Mahbuba Nasreen</li>
+<li> Mahbuba Nasreen </li> 
 <li>Nusrat Jahan Borna</li>
 <li>Mohammad Hasibur Rahman Shuvo</li>
 </ul>
