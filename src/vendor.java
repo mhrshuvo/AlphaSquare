@@ -35,7 +35,7 @@ public class vendor extends login{
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 frame.dispose();
-                //SupplyBook.main(null);
+                SupplyBook.main(null);
             }
         });
 

@@ -112,7 +112,6 @@ public class login {
         );
         Admin.setBounds(120, 225, 198, 29);
         frame.getContentPane().add(Admin);
-
     }
 }
 

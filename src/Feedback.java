@@ -2,9 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class Feedback extends login {
-
 
     private JTextArea textArea;
 
@@ -35,33 +37,34 @@ public class Feedback extends login {
         welcome();
         Label("Feedback");
 
-
         JButton btnSubmit = new JButton("Submit");
-        btnSubmit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                File log = new File("Feedback.txt");
+        btnSubmit.addActionListener( arg0 -> {
 
-                String Feedback = textArea.getText().trim();
+                String Feedback = textArea.getText();
+            String driver ="com.mysql.jdbc.Driver";
+            String url = "jdbc:mysql://localhost:3306/lbms_alpha";
+            String privilages = "root";
+            String password = "";
 
                 if(textArea.getText().isEmpty()){
                     JOptionPane.showMessageDialog(frame,"Invalid Input!","Error!",JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 try{
-                    if(!log.exists()){
-                        log.createNewFile();
-                    }
 
-                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(log,true));
-                    bufferedWriter.write(Feedback);
-                    bufferedWriter.newLine();
-                    bufferedWriter.close();
+                    Class.forName(driver);
+                    Connection con = DriverManager.getConnection(url, privilages, password);
+                    Statement stm = con.createStatement();
+
+                    String admin = "INSERT INTO feedback VALUES ( null,'"+Feedback+"')";
+                    stm.executeUpdate(admin);
+
                     JOptionPane.showMessageDialog(frame,"Thanks for your feedback!");
 
-                } catch(IOException n) {
+                } catch(Exception n) {
                 }
             }
-        });
+        );
 
         btnSubmit.setBounds(84, 215, 131, 23);
         frame.getContentPane().add(btnSubmit);

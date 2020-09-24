@@ -1,8 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
-import java.awt.event.*;
-import java.io.*;
+import java.sql.*;
+
 
 public class SearchBook extends login{
     private JTextField textField;
@@ -32,41 +32,44 @@ public class SearchBook extends login{
     }
 
     private void SearchBookGUI() {
+
+        String driver ="com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/lbms_alpha";
+        String privilages = "root";
+        String password = "";
+
         welcome();
         JButton button = new JButton("Search");
 
         button.addActionListener(e ->  {
+            if(textField.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(frame,"Invalid Input!","Error!",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
                 try {
-                    BufferedReader Reader = new BufferedReader(new FileReader("BookDatabase.txt"));
-                    String BookID = textField.getText().trim();
-                    String BookTitle = textField.getText().trim();
-                    String BookAuthor = textField.getText().trim();
+                    String BookTitle = textField.getText();
                     boolean Search = false;
-                    String line;
-
-                    if (textField.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(frame, "Invalid Input!", "Error!", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
-                    while ((line = Reader.readLine()) != null) {
-                        String[] array = line.split(",");
-
-                        if (array[0].equals(BookID) || array[1].equals(BookTitle) || array[2].equals(BookAuthor)) {
-                            textArea.append(array[0] + "\n");
-                            textArea_1.append(array[1] + "\n");
-                            textArea_2.append(array[2] + "\n");
-                            Search = true;
-                        }
+                    Class.forName(driver);
+                    Connection con = DriverManager.getConnection(url, privilages, password);
+                    Statement stm = con.createStatement();
+                    ResultSet rs = stm.executeQuery("SELECT * FROM `books` where Title = '"+BookTitle+"' ");
+                    System.out.println(rs);
+                    while(rs.next()){
+                              textArea.append(rs.getInt("BID") + "\n");
+                              textArea_1.append(rs.getString("Title") + "\n");
+                              textArea_2.append(rs.getString("Author") + "\n");
+                        Search = true;
                     }
 
                     if (Search == false) {
                         JOptionPane.showMessageDialog(frame, "Book not found!", "Error!", JOptionPane.ERROR_MESSAGE);
                     }
 
-                } catch (IOException t) {
+                } catch (Exception t) {
                     t.printStackTrace();
                 }
+
             }
         );
         button.setBounds(20, 258, 80, 23);
@@ -148,22 +151,17 @@ public class SearchBook extends login{
         btnDisplayAll.addActionListener(e ->  {
                 try {
 
-                    BufferedReader Reader = new BufferedReader(new FileReader("BookDatabase.txt"));
-
-                    String line;
-
-                    textArea.setText(null);
-
-                    while((line = Reader.readLine())!= null){
-                        String[] array = line.split(",");
-
-                        textArea.append(array[0]+"\n");
-                        textArea_1.append(array[1]+"\n");
-                        textArea_2.append(array[2]+"\n");
-
+                    Class.forName(driver);
+                    Connection con = DriverManager.getConnection(url, privilages, password);
+                    Statement stm = con.createStatement();
+                    ResultSet rs = stm.executeQuery("SELECT * FROM `books`");
+                    System.out.println(rs);
+                    while(rs.next()){
+                        textArea.append(rs.getInt("BID") + "\n");
+                        textArea_1.append(rs.getString("Title") + "\n");
+                        textArea_2.append(rs.getString("Author") + "\n");
                     }
-
-                } catch (IOException t) {
+                } catch (Exception t) {
                     t.printStackTrace();
                 }
             }
@@ -172,7 +170,7 @@ public class SearchBook extends login{
         btnDisplayAll.setBounds(107, 258, 119, 23);
         frame.getContentPane().add(btnDisplayAll);
 
-        JLabel lblBookId = new JLabel("Book ID / Title / Author");
+        JLabel lblBookId = new JLabel(" Book Title ");
         lblBookId.setHorizontalAlignment(SwingConstants.CENTER);
         lblBookId.setBounds(213, 225, 211, 29);
         frame.getContentPane().add(lblBookId);
