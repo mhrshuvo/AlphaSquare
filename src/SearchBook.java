@@ -166,7 +166,11 @@ public class SearchBook extends login{
 
         JLabel lblBookId = new JLabel(" Book Title ");
         lblBookId.setHorizontalAlignment(SwingConstants.CENTER);
-        lblBookId.setBounds(213, 225, 211, 29);
+        lblBookId.setBounds(200, 225, 150, 29);
         frame.getContentPane().add(lblBookId);
+
+//        JButton btn_reqbook = new JButton("Request Book");
+//        btn_reqbook.setBounds(200,225,200,23);
+//        frame.getContentPane().add(btn_reqbook);
     }
 }

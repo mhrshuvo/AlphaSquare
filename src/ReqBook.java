@@ -1,32 +1,35 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import java.io.*;
+import javax.swing.border.Border;
+import java.sql.*;
 
-public class ReqBook extends login{
-    public static void main(String p){
-        if(p == "pass"){
+public class ReqBook extends login {
+
+    public static void main(String p) {
+        if (p == "pass") {
             EventQueue.invokeLater(() -> {
-                try {
-                    ReqBook window = new ReqBook();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+                        try {
+                            ReqBook window = new ReqBook();
+                            window.frame.setVisible(true);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
             );
-        }else{
+        } else {
             login.main(null);
         }
     }
 
-    public ReqBook(){
+    public ReqBook() {
         ReqBookGUI();
     }
-    public void ReqBookGUI(){
+
+    public void ReqBookGUI() {
         welcome();
         Label("Request page");
 
     }
-
 }
+
+
