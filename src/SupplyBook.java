@@ -36,7 +36,7 @@ public class SupplyBook extends login {
         JButton btnAddForBook = new JButton("Supply Book");
         btnAddForBook.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                String BookID = textField.getText();
+
                 String BookTitle = textField_1.getText();
                 String BookAuthor = textField_2.getText();
                 String driver ="com.mysql.jdbc.Driver";
@@ -49,7 +49,7 @@ public class SupplyBook extends login {
                     Connection con = DriverManager.getConnection(url, privilages, password);
                     Statement stm = con.createStatement();
 
-                    if(textField.getText().isEmpty() || textField_1.getText().isEmpty() || textField_2.getText().isEmpty())
+                    if( textField_1.getText().isEmpty() || textField_2.getText().isEmpty())
                     {
                         JOptionPane.showMessageDialog(frame,"Invalid Input!","Error!",JOptionPane.ERROR_MESSAGE);
                         return;
@@ -58,7 +58,7 @@ public class SupplyBook extends login {
                     String Nbook = "INSERT INTO `books` VALUES ( null,'"+BookTitle+ "','"+BookAuthor+ "')";
                     stm.executeUpdate(Nbook);
                     JOptionPane.showMessageDialog(frame,"New book added successfully");
-                    textField.setText(null);
+
                     textField_1.setText(null);
                     textField_2.setText(null);
 
@@ -82,10 +82,7 @@ public class SupplyBook extends login {
         btnBack.setBounds(232, 215, 123, 23);
         frame.getContentPane().add(btnBack);
 
-        textField = new JTextField();
-        textField.setBounds(130, 107, 178, 20);
-        frame.getContentPane().add(textField);
-        textField.setColumns(10);
+
 
         textField_1 = new JTextField();
         textField_1.setColumns(10);
@@ -97,11 +94,6 @@ public class SupplyBook extends login {
         textField_2.setBounds(130, 172, 178, 20);
         frame.getContentPane().add(textField_2);
 
-        JLabel lblId = new JLabel("ID");
-        lblId.setHorizontalAlignment(SwingConstants.CENTER);
-
-        lblId.setBounds(74, 101, 46, 29);
-        frame.getContentPane().add(lblId);
 
         JLabel lblTitle = new JLabel("Title");
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);

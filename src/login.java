@@ -4,6 +4,11 @@ import java.awt.event.*;
 
 public class login {
 
+    String driver ="com.mysql.jdbc.Driver";
+    String url = "jdbc:mysql://localhost:3306/lbms_alpha";
+    String privilages = "root";
+    String password = "";
+
     JFrame frame;
     JTextField txtUserName ,txtName,txtEmail;
     JPasswordField passwordField;
@@ -26,6 +31,7 @@ public class login {
     }
 
     public void welcome(){
+
         frame = new JFrame("AlphaSquare");
         frame.setBounds(100, 100, 470, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

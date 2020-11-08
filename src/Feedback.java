@@ -1,10 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Feedback extends login {
 
@@ -40,7 +37,7 @@ public class Feedback extends login {
         JButton btnSubmit = new JButton("Submit");
         btnSubmit.addActionListener( arg0 -> {
 
-                String Feedback = textArea.getText();
+            String Feedback = textArea.getText();
             String driver ="com.mysql.jdbc.Driver";
             String url = "jdbc:mysql://localhost:3306/lbms_alpha";
             String privilages = "root";
@@ -60,8 +57,10 @@ public class Feedback extends login {
                     stm.executeUpdate(admin);
 
                     JOptionPane.showMessageDialog(frame,"Thanks for your feedback!");
+                    textArea.setText(null);
 
-                } catch(Exception n) {
+
+                } catch(Exception e) {
                 }
             }
         );
@@ -70,12 +69,11 @@ public class Feedback extends login {
         frame.getContentPane().add(btnSubmit);
 
         JButton btnBack = new JButton("Back");
-        btnBack.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
+        btnBack.addActionListener(arg0 -> {
                 frame.dispose();
                 user.main("pass");
             }
-        });
+        );
 
         btnBack.setBounds(222, 215, 125, 23);
         frame.getContentPane().add(btnBack);

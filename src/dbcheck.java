@@ -2,7 +2,6 @@ import java.sql.*;
 public class dbcheck{
 
     public static String CreateDbAT(String tNamw) {
-
             String ret = "CREATE TABLE " +tNamw+ "("
             + "UID INT NOT NULL AUTO_INCREMENT,"
             + "NAME VARCHAR(45) NOT NULL,"

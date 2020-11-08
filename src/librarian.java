@@ -7,13 +7,13 @@ class librarian extends login {
     public static void main(String p) {
         if(p=="pass"){
             EventQueue.invokeLater(() ->{
-                        try {
-                            librarian window = new librarian();
-                            window.frame.setVisible(true);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
+                try {
+                    librarian window = new librarian();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                }
             );
         }else{
             login.main(null);
@@ -31,7 +31,7 @@ class librarian extends login {
         button.addActionListener(e -> {
             System.out.println("Add book button pressed");
                 frame.dispose();
-              //  AddBook.main(null);
+                SupplyBook.main(null);
             }
         );
 
@@ -47,9 +47,9 @@ class librarian extends login {
         button_1.setBounds(108, 227, 207, 23);
         frame.getContentPane().add(button_1);
 
-        JButton btnTracking = new JButton("View Book from Vendor");
+        JButton btnTracking = new JButton("View All Book ");
         btnTracking.addActionListener(e ->  {
-            System.out.println("View Book from Vendor button pressed");
+            System.out.println("View All Books button pressed");
                 frame.dispose();
               //  BookVendor.main(null);
             }

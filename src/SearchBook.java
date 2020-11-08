@@ -32,12 +32,6 @@ public class SearchBook extends login{
     }
 
     private void SearchBookGUI() {
-
-        String driver ="com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/lbms_alpha";
-        String privilages = "root";
-        String password = "";
-
         welcome();
         JButton button = new JButton("Search");
 
@@ -53,7 +47,7 @@ public class SearchBook extends login{
                     Class.forName(driver);
                     Connection con = DriverManager.getConnection(url, privilages, password);
                     Statement stm = con.createStatement();
-                    ResultSet rs = stm.executeQuery("SELECT * FROM `books` where Title = '"+BookTitle+"' ");
+                    ResultSet rs = stm.executeQuery("SELECT DISTINCT * FROM `books` where Title = '"+BookTitle+"' ");
                     System.out.println(rs);
                     while(rs.next()){
                               textArea.append(rs.getInt("BID") + "\n");
