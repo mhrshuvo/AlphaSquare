@@ -32,7 +32,7 @@ public class login {
 
     public void welcome(){
 
-        frame = new JFrame("AlphaSquare");
+        frame = new JFrame("4 bit Ninja 🐱‍👤 (CSC - 387 sec F)");
         frame.setBounds(100, 100, 470, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);

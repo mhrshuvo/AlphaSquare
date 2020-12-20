@@ -12,7 +12,7 @@ public class SearchBook extends login{
     Border border = BorderFactory.createLineBorder(Color.GRAY);
 
     public static void main(String p) {
-        if(p == "pass") {
+//        if(p == "pass") {
             EventQueue.invokeLater(() -> {
                 try {
                     SearchBook window = new SearchBook();
@@ -21,10 +21,10 @@ public class SearchBook extends login{
                     e.printStackTrace();
                 }
             });
-        }
-        else{
-            login.main(null);
-        }
+//        }
+//        else{
+//            login.main(null);
+//        }
     }
 
     public SearchBook() {
@@ -33,8 +33,8 @@ public class SearchBook extends login{
 
     private void SearchBookGUI() {
         welcome();
-        JButton button = new JButton("Search");
 
+        JButton button = new JButton("Search");
         button.addActionListener(e ->  {
             if(textField.getText().isEmpty())
             {
@@ -166,7 +166,7 @@ public class SearchBook extends login{
 
         JLabel lblBookId = new JLabel(" Book Title ");
         lblBookId.setHorizontalAlignment(SwingConstants.CENTER);
-        lblBookId.setBounds(200, 225, 150, 29);
+        lblBookId.setBounds(180, 225, 150, 29);
         frame.getContentPane().add(lblBookId);
 
 //        JButton btn_reqbook = new JButton("Request Book");
